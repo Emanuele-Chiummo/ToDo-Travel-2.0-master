@@ -20,5 +20,17 @@
     text-align:center;
     padding: 20px;
 }
+.col-auto{
+    align-items: center;
+    margin:0 auto;
+}
+.select{
+    align-items: center;
+    margin:0 auto;
+    padding:20px;
+}
 
+.form-group{
+    padding:5px;
+}
 

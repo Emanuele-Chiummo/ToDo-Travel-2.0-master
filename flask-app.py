@@ -143,6 +143,31 @@ def edit_profile(username):
         return redirect('/home')
     return render_template('edit-profile.html', users=users)
 
+@app.route('/viaggio', methods=('GET', 'POST'))
+def viaggio():
+    if request.method == 'POST':
+        viaggio = request.form['viaggio']
+        destinazione = request.form['destinazione']
+        data_partenza = request.form['data_partenza']
+        data_ritorno = request.form['data_ritorno']
+        viaggiattore = session['username']
+        connection = connection_db()
+        connection.execute(
+            'INSERT INTO travel (viaggio, destinazione, viaggiatore, data_partenza, data_ritorno) VALUES (?, ?, ?, ?, ?) ', (viaggio, destinazione, viaggiattore, data_partenza, data_ritorno,))
+        connection.commit()
+        connection.close()
+        return redirect('/home')
+    return render_template('viaggio.html')
+
+@app.route('/my-travel', methods=('GET', 'POST'))
+def read():
+    connection = connection_db()
+    travel = connection.execute('SELECT * from travel where viaggiatore=?', (session['username'],)).fetchall()
+    connection.commit()
+    connection.close()
+    return render_template('my-travel.html', username=session['username'], travel=travel)
+
+    
 
 
 if __name__ == '__main__':
