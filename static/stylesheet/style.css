@@ -33,4 +33,35 @@
 .form-group{
     padding:5px;
 }
+table, th, td{
+    text-align: center;
+    padding: 15px;
+}
+
+.raw{
+    display:inline-block;
+    margin-bottom: 20px;
+    
+}
+
+.card{
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 20px; /* Added */
+    box-shadow: 2px 2px gainsboro;
+    
+}
+.button a{
+    float: left;
+    display:block;
+    margin-right: 20px;
+    
+}
+
+.button form button{
+    float: left;
+    display:block;
+    margin-left:85px;
+
+}
 

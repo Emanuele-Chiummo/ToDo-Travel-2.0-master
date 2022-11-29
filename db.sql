@@ -9,7 +9,7 @@ CREATE TABLE posts(
     
 );
 
-
+DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     user_id INTEGER Primary KEY AUTOINCREMENT,
     username Text not null,
@@ -19,12 +19,40 @@ CREATE TABLE users (
     password TEXT not null
 );
 
+DROP TABLE IF EXISTS travel;
 CREATE TABLE travel(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     viaggiatore REFERENCES users(username),
+    destinazione REFERENCES my_travel(destinazione), 
+    data_partenza REFERENCES my_travel(data_partenza), 
+    data_ritorno REFERENCES my_travel(data_ritorno), 
+    viaggio REFERENCES my_travel(viaggio), 
+    hotel REFERENCES my_travel(soggiorno),
+    soggiorno TEXT,
+    nome_struttura TEXT, 
+    indirizzo_struttura TEXT
+);
+
+DROP TABLE IF EXISTS my_travel;
+CREATE TABLE my_travel(
     travel_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    destinazione TEXT, 
-    data_partenza DATETIME, 
+    viaggiatore REFERENCES users(username),
+    destinazione TEXT,
+    data_partenza DATETIME,
     data_ritorno DATETIME, 
-    viaggio TEXT not null, 
-    hotel TEXt
+    viaggio TEXT, 
+    soggiorno TEXT,
+    nome_struttura TEXT, 
+    indirizzo_struttura TEXT
+);
+
+DROP TABLE IF EXISTS diario;
+CREATE TABLE diario(
+    id_diario INTEGER PRIMARY KEY AUTOINCREMENT,
+    titolo TEXT NOT NULL, 
+    info TEXT NOT NULL,
+    destinazione TEXT,
+    immagine BLOB, 
+    FOREIGN KEY (id_diario) REFERENCES travel(id)
+    ON UPDATE CASCADE
 );

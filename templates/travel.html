@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Travel Organization</title>
+    <link rel="stylesheet" href="../static/stylesheet/style.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3388/3388607.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.css">
+</head>
+</head>
+</head>
+<title>Home page</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home">
+                <img src="https://cdn-icons-png.flaticon.com/512/3388/3388607.png" alt="Logo" width="30" height="30"
+                    class="d-inline-block align-text-top">
+                Travel Organization
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Travel</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-nav">
+                <img class="avatar" src="{{ avatars.default(size='s') }}">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{username}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/my-travel">My Travel</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{username}}/edit-profile">Edit Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/create">Create</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Log Out</a>
+                    </div>
+                </li>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="px-2 py-2 my-2 text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/3388/3388607.png" alt="Logo" width="50" height="50"
+                class="d-inline-block align-text-top">
+            <h1 class="display-5 fw-bold">Travel Organization</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Tieni sotto controllo il tuo viaggio.</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container px-4 " id="featured-3">
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                <div class="feature-col">
+                    <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
+                      <img src="data:image/png;base64,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">
+                    </div>
+                    <h3 class="fs-2">Aggiungi Viaggio</h3>
+                    <p>Aggiungi un nuovo viaggio</p>
+                    <a href="/viaggio" class="icon-link d-inline-flex align-items-center">
+                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAE0UlEQVRoge2ZTUxcVRTH/+fNG0roR1rAGKQfSW2F1O5A66aLNi6ssbUuoI2osZGPGCBxYVdKOhqjG2PStEOkJl2BFWo/kNolujK1gZVobNONFGhsKRuQgZl55+9iHtOBeW/em3kDm3IWM+/r3vv733vuOfe+B6zbuj3dJkWpZaAhtAubXwb1EETqqKwFUUVwE0iQmAM5BeAOyVEIhyfv7b2NSESDNh1IwPPXT+2wEkY7wHdIVoMASYAAUycggdTP0j37GjhBSK8RR3SypW9iTQXsGTj1TNKQL0B5H2BJGto/fPoeyTgEF424dE21XZpedQG7r3zwthLnQJSnQALBw34ApDyGsuPf1v4fVkVAXU9reKZSu0k2Iw1SLHj7HwQoPQ+5tRNtFxJFE/DcUGtZ6aL1owJHVhd+qYzcDMtCw1Tb0LwXm+H1QF1Pa3ht4QFAX49reBADDSWBBcxUavfawqfbeLXiUfKsF19OF9p9taVJVXvzhk8qrFgCUE1dFkBKTcAQv/AZ/3pypnOwP28B1VffqzAZ/lsUlfn2vDUXx0/HP8dLVbUAgN8n/8Kxa10wysL5wadOZhKLWjP78ZBjiHV1obCaXxYCTwJQTcMDwIHqfU9GIz94kCg3w8ZnbpyOAvZcad5uJ6nCfX6FFQi/VLB529mjO30LSCo7ECTDwllBYfAAyRIlP/QnIBIxCDYVJdpk8hcOnzpWvIuBhpCngF37xg+A3F5MeFtBwfB2G9VbJmJ13iNAPVSMOJ9VbTB4kICoHvYWAKkvSpLKUhAMHiSUzBoB06GnXsgrScEB3nLYp6jCml3MAFzehgggG0xQ4N5BRI2nAKR2Uq69YsUSy5KUX5s+fSPn/VvjY3jt+9OQUjPHvGLVynJZLsQn20DnIV2RpIplr+zcDyYtL9fc7CnAlz+ulnnNK4fGs0cgtQG3jx3gJbW2Kbb99s8fQEhywhOYXVnOYQ7wAYByt0ggpSaOXevKvbZRzfL5bV8dAQSOowsCCAlQYuaAJ0A88BYA3iXxomskMCS9qhS7YrHhxX7eml3IrlYA2bgBkgEvfsLx8g66s7JaJxca8RXnnXo+I8471Jt/LlnRhhAjngIgHA4K77icCAgPArR02FPA5L29twHeDwTvEqkCwSvH5/XgqKcARCJKSF8QeDooCARPQsA+p1eRjvsBI44oyXjB8C4uVCg8wEUKo46sThcnW/omILhYKLwTv58k5QIPQL6LfTo86VsAAJiW9QmJ6ULgxRDcGh9L1+UvSbnAE4/NZNJ1T5zztcqzF06cpOilvHqeBJTQhQSYtLAsSQnyhQeUjbEzw5fdGLO2aJn239CfYxuP7q8iWe8bHvagmwYQNiElIcAM2cz5wms0duaXr3Mxer6Ze7iV7aRc9w0fMNqk4YmfY+RHXnyeAtB42SqRhSaSN9cOnjdiWtaIyK/J4AIATLUNzU8blcdJfrvq8KrRmOpbiHi/mQYK+MBRfu7NEyDOE6gsLjwfQdGea8I6ma8RyLSZzsH+hGHUgugGsFgE+EVAzoetcG2+8EDAj3wV37xRnTTQAUUTwB15wt8XspfCqFuSWnUBaYtEjC1bRupF9bCSdSBqAFaT2GTDz4GYIHlXiBFaOjyvB0eL8Zl13dbtabf/AdYnetuo732iAAAAAElFTkSuQmCC">
+                      <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+                    </a>
+                  </div>
+                {% for travel in travel %}
+                <div class="feature-col">
+                    <div
+                        class="feature-icon d-inline-flex align-items-center justify-content-center  bg-gradient fs-2 mb-3">
+                        <img
+                            src="data:image/png;base64,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">
+                    </div>
+                    <h3 class="fs-2">{{travel.destinazione}}</h3>
+                    <p>{{travel.data_partenza}} - {{travel.data_ritorno}}</p>
+                    <a href="\my-travel">View More</a>
+
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </main>
+    {% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#data').DataTable();
+        });
+    </script>
+    {% endblock %}
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+
+</body>
+
+</html>

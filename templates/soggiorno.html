@@ -57,63 +57,28 @@
     </header>
     <main>
         <form method="POST" class="m-5">
-            <fieldset disabled>
-                <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Username</label>
-                    <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input"
-                        value="{{session['username']}}">
-                </div>
-            </fieldset>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                {% for travel in travel %}
+                <option value="1" id="{{travel.id}}">{{travel.id}} - {{travel.destinazione}}</option>
+                {% endfor %}
+              </select>
             <div class="form-group">
-                <label for="viaggio">Come Viaggi?</label>
-                <label for="exampleDataList" class="form-label"></label>
-                <input class="form-control" name="viaggio" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." value="{{request.form['viaggio']}}">
-                <datalist id="datalistOptions">
-                    <option value="Aereo">
-                    <option value="Treno">
-                    <option value="Bus">
-                    <option value="Macchina">
-                </datalist>
+                <label for="compagnia">Soggiorno</label>
+                <input type="text" name="soggiorno" placeholder="Inserisci delle informazioni"
+                    class="form-control">{{ request.form['soggiorno'] }}</textarea>
             </div>
             <div class="form-group">
-                <label for="compagnia">destinazione</label>
-                <input type="text" name="destinazione" placeholder="Inserisci delle informazioni"
-                    class="form-control">{{ request.form['destinazione'] }}</textarea>
+                <label for="compagnia">Nome Struttura</label>
+                <input type="text" name="nome_struttura" placeholder="Inserisci delle informazioni"
+                    class="form-control">{{ request.form['nome_struttura'] }}</textarea>
             </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="viaggio">Data Partenza</label>
-                        <input type="date" name="data_partenza" placeholder="mm/dd/yyyy" class="form-control"
-                            value="{{ request.form['data_partenza'] }}"></input>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="viaggio">Data Ritorno</label>
-                        <input type="date" name="data_ritorno" placeholder="mm/dd/yyyy" class="form-control"
-                            value="{{ request.form['data_ritorno'] }}"></input>
-                    </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="compagnia">Soggiorno</label>
-                    <input type="text" name="soggiorno" placeholder="Inserisci delle informazioni"
-                        class="form-control">{{ request.form['soggiorno'] }}</textarea>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="compagnia">Nome Struttura</label>
-                    <input type="text" name="nome_struttura" placeholder="Inserisci delle informazioni"
-                        class="form-control">{{ request.form['nome_struttura'] }}</textarea>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="compagnia">Indirizzo Struttura</label>
-                    <input type="text" name="indirizzo_struttura" placeholder="Inserisci delle informazioni"
-                        class="form-control">{{ request.form['indirizzo_struttura'] }}</textarea>
-                </div>
+            <div class="form-group">
+                <label for="compagnia">Indirizzo Struttura</label>
+                <input type="text" name="indirizzo_struttura" placeholder="Inserisci delle informazioni"
+                    class="form-control">{{ request.form['indirizzo_struttura'] }}</textarea>
             </div>
+            
             </br>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -1,6 +1,6 @@
 import sqlite3
-from flask import Flask, redirect, render_template, request, session, url_for, send_from_directory
-
+from flask import Flask, redirect, flash, render_template, request, session, url_for, send_from_directory
+from werkzeug.utils import secure_filename
 from flask_avatars import Avatars
 
 
@@ -8,6 +8,8 @@ def connection_db():
     connection = sqlite3.connect('database.db')
     connection.row_factory = sqlite3.Row
     return connection
+
+
 
 def register_user_to_db(username,first_name, last_name, email, password):
     con = sqlite3.connect('database.db')
@@ -29,6 +31,7 @@ def check_user(username, password):
         return False
 
 app = Flask(__name__)
+
 avatars = Avatars(app)
 app.secret_key = "r@nd0mSk_1"
 
@@ -82,7 +85,7 @@ def home():
 @app.route('/<int:idx>/delete', methods=('POST',))
 def delete(idx):
     connection = connection_db()
-    connection.execute('DELETE FROM posts WHERE id=?', (idx,))
+    connection.execute('DELETE FROM travel WHERE id=?', (idx,))
     connection.commit()
     connection.close()
     return redirect('/home')
@@ -99,24 +102,6 @@ def create():
         connection.close()
         return redirect('/home')
     return render_template('create.html')
-
-@app.route('/<int:idx>/edit', methods=('GET', 'POST'))
-def edit(idx):
-    connection = connection_db()
-    posts = connection.execute(
-        'SELECT * from posts where id=?', (idx,)).fetchone()
-    connection.close()
-
-    if request.method == 'POST':
-        title = request.form['title']
-        info = request.form['info']
-        connection = connection_db()
-        connection.execute(
-            'UPDATE posts SET title=?, info=? WHERE id=?', (title, info, idx))
-        connection.commit()
-        connection.close()
-        return redirect('/home')
-    return render_template('edit.html', posts=posts)
     
 
 @app.route('/logout')
@@ -150,10 +135,14 @@ def viaggio():
         destinazione = request.form['destinazione']
         data_partenza = request.form['data_partenza']
         data_ritorno = request.form['data_ritorno']
+        soggiorno = request.form['soggiorno']
+        nome_struttura = request.form['nome_struttura']
+        indirizzo_struttura = request.form['indirizzo_struttura']
         viaggiattore = session['username']
         connection = connection_db()
         connection.execute(
-            'INSERT INTO travel (viaggio, destinazione, viaggiatore, data_partenza, data_ritorno) VALUES (?, ?, ?, ?, ?) ', (viaggio, destinazione, viaggiattore, data_partenza, data_ritorno,))
+            'INSERT INTO travel (viaggio, destinazione, viaggiatore, data_partenza, data_ritorno,soggiorno, nome_struttura, indirizzo_struttura) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ', (viaggio, destinazione, viaggiattore, data_partenza, data_ritorno, soggiorno, nome_struttura, indirizzo_struttura,))
+        connection.execute('INSERT INTO my_travel (viaggio, destinazione, viaggiatore, data_partenza, data_ritorno) VALUES (?, ?, ?, ?, ?)', (viaggio, destinazione, viaggiattore, data_partenza, data_ritorno,))
         connection.commit()
         connection.close()
         return redirect('/home')
@@ -167,6 +156,92 @@ def read():
     connection.close()
     return render_template('my-travel.html', username=session['username'], travel=travel)
 
+@app.route('/soggiorno', methods=('GET', 'POST'))
+def soggiorno():
+    connection = connection_db()
+    travel = connection.execute('SELECT * FROM travel').fetchall()
+    connection.close()
+    if request.method =='POST':
+        soggiorno = request.form['soggiorno']
+        nome_struttura = request.form['nome_struttura']
+        indirizzo_struttura = request.form['indirizzo_struttura']
+        connection = connection_db()
+        connection.execute('UPDATE travel SET soggiorno=?, nome_struttura=?, indirizzo_struttura =?', (soggiorno,nome_struttura,indirizzo_struttura,))
+        connection.commit()
+        connection.close()
+    return render_template('soggiorno.html', travel=travel)
+
+@app.route('/travel', methods=('GET', 'POST'))
+def travel():
+    connection = connection_db()
+    travel = connection.execute('SELECT * from travel where viaggiatore=?', (session['username'],)).fetchall()
+    connection.commit()
+    connection.close()
+    return render_template('travel.html', username=session['username'], travel=travel)
+
+@app.route('/<int:idx>/edit', methods=('GET', 'POST'))
+def edit(idx):
+    connection = connection_db()
+    travel = connection.execute(
+        'SELECT * from travel where id=?', (idx,)).fetchone()
+    connection.close()
+
+    if request.method == 'POST':
+        destinazione = request.form['destinazione']
+        data_partenza = request.form['data_partenza']
+        data_ritorno = request.form['data_ritorno']
+        soggiorno = request.form['soggiorno']
+        nome_struttura = request.form['nome_struttura']
+        indirizzo_struttura = request.form['indirizzo_struttura']
+        connection = connection_db()
+        connection.execute(
+            'UPDATE travel SET destinazione=?, data_partenza = ?, data_ritorno = ?, soggiorno = ?, nome_struttura = ?, indirizzo_struttura = ? WHERE id=?', (destinazione,data_partenza,data_ritorno,soggiorno,nome_struttura, indirizzo_struttura, idx,))
+        connection.commit()
+        connection.close()
+        return redirect('/home')
+    return render_template('edit.html', travel=travel)
+
+@app.route('/diario', methods=('GET', 'POST'))
+def diario_insert():
+    connection = connection_db()
+    diario = connection.execute('SELECT * from diario').fetchall()
+    connection.close()
+
+    if request.method =='POST':
+        titolo = request.form['titolo']
+        info = request.form['info']
+        connection = connection_db()
+        connection.execute ('INSERT INTO diario (titolo, info) VALUES (?, ?)',(titolo, info,))
+        connection.commit()
+        connection.close()
+        return redirect('/home')
+    return render_template('diario.html', diario=diario)
+
+@app.route('/<int:idx>/edit_post', methods=('GET', 'POST'))
+def edit_post(idx):
+    connection = connection_db()
+    diario = connection.execute(
+        'SELECT * from diario where id_diario=?', (idx,)).fetchone()
+    connection.close()
+
+    if request.method == 'POST':
+        titolo = request.form['titolo']
+        info = request.form['info']
+        connection = connection_db()
+        connection.execute(
+            'UPDATE diario SET titolo=?, info=? WHERE id_diario = ?', (titolo, info, idx,))
+        connection.commit()
+        connection.close()
+        return redirect('/home')
+    return render_template('edit_post.html', diario=diario)
+
+@app.route('/<int:idx>/delete_post', methods=('POST',))
+def delete_post(idx):
+    connection = connection_db()
+    connection.execute('DELETE FROM diario WHERE id_diario =? ', (idx,))
+    connection.commit()
+    connection.close()
+    return redirect('/home')
     
 
 
