@@ -1,7 +1,10 @@
 import sqlite3
-from flask import Flask, redirect, flash, render_template, request, session, url_for, send_from_directory
+from flask import Flask, redirect, flash, render_template, request, session, url_for, send_from_directory, make_response
 from werkzeug.utils import secure_filename
 from flask_avatars import Avatars
+from authlib.integrations.flask_client import OAuth
+import os
+
 
 
 def connection_db():
@@ -31,14 +34,40 @@ def check_user(username, password):
         return False
 
 app = Flask(__name__)
-
+oauth = OAuth(app)
 avatars = Avatars(app)
-app.secret_key = "r@nd0mSk_1"
+app.secret_key = os.urandom(12)
 
 @app.route("/")
 def index():
     return render_template('login.html')
 
+@app.route('/google/')
+def google():
+
+    GOOGLE_CLIENT_ID = '488676761730-ccnh7bnt49dnc9i82t37n6krhjm0ven4.apps.googleusercontent.com'
+    GOOGLE_CLIENT_SECRET = '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'
+    CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
+    oauth.register(
+        name='google',
+        client_id=GOOGLE_CLIENT_ID,
+        client_secret=GOOGLE_CLIENT_SECRET,
+        server_metadata_url=CONF_URL,
+        client_kwargs={
+            'scope': 'openid email profile'
+        }
+    )
+
+    # Redirect to google_auth function
+    redirect_uri = url_for('google_auth', _external=True)
+    print(redirect_uri)
+    return oauth.google.authorize_redirect(redirect_uri)
+
+@app.route('/google/auth/')
+def google_auth():
+    token = oauth.google.authorize_access_token()
+    session['username'] = token['userinfo']
+    return redirect('/home')
 
 @app.route('/register', methods=["POST", "GET"])
 def register():
@@ -72,7 +101,6 @@ def login():
 
 @app.route('/home', methods=['POST', "GET"])
 def home():
-
     if 'username' in session:
         connection = connection_db()
         posts = connection.execute('SELECT * FROM posts').fetchall()
