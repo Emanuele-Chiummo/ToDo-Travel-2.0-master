@@ -235,18 +235,19 @@ def edit(idx):
 @app.route('/diario', methods=('GET', 'POST'))
 def diario_insert():
     connection = connection_db()
-    diario = connection.execute('SELECT * from diario').fetchall()
+    diario = connection.execute('SELECT * from diario where viaggiatore =?',(session['username'],)).fetchall()
     connection.close()
 
     if request.method =='POST':
         titolo = request.form['titolo']
         info = request.form['info']
+        viaggiatore = session['username']
         connection = connection_db()
-        connection.execute ('INSERT INTO diario (titolo, info) VALUES (?, ?)',(titolo, info,))
+        connection.execute ('INSERT INTO diario (titolo, info, viaggiatore) VALUES (?, ?, ?)',(titolo, info, viaggiatore,))
         connection.commit()
         connection.close()
         return redirect('/home')
-    return render_template('diario.html', diario=diario)
+    return render_template('diario.html',username=session['username'], diario=diario)
 
 @app.route('/<int:idx>/edit_post', methods=('GET', 'POST'))
 def edit_post(idx):
@@ -276,8 +277,35 @@ def delete_post(idx):
 
 @app.route('/itinerario', methods=('GET', 'POST'))
 def itinerario():
+ 
+    return render_template('itinerario.html',itinerario=itinerario)   
 
-    return render_template('itinerario.html')   
+@app.route('/new_itinerario', methods=('GET','POST'))
+def new_itinerario():
+    
+    if request.method =='POST':
+        citta = request.form['citta']
+        paese = request.form['paese']
+        viaggiatore = session['username']
+        itinerario = request.form['itinerario']
+        connection = connection_db()
+        connection.execute ('INSERT INTO itinerario (citta, paese, itinerario, viaggiatore) VALUES (?, ?, ?, ?)',(citta, paese, itinerario,viaggiatore,))
+        connection.commit()
+        connection.close()
+        return redirect('/home')
+
+    return render_template('new_itinerario.html')
+
+@app.route('/your_itinerari', methods=('GET','POST'))
+def your_itinerari():
+    connection = connection_db()
+    itinerario = connection.execute('SELECT * from itinerario where viaggiatore=?', (session['username'],)).fetchall()
+    connection.commit()
+    connection.close()
+    return render_template('your_itinerari.html',username=session['username'], itinerario=itinerario)
+
+@app.route
+
 
 @app.route('/amsterdam')
 def Amsterdam():

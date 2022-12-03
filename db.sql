@@ -49,10 +49,19 @@ CREATE TABLE my_travel(
 DROP TABLE IF EXISTS diario;
 CREATE TABLE diario(
     id_diario INTEGER PRIMARY KEY AUTOINCREMENT,
+    viaggiatore REFERENCES users(username),
     titolo TEXT NOT NULL, 
     info TEXT NOT NULL,
     destinazione TEXT,
     immagine BLOB, 
     FOREIGN KEY (id_diario) REFERENCES travel(id)
     ON UPDATE CASCADE
+);
+DROP TABLE IF EXISTS itinerario;
+CREATE TABLE itinerario(
+    id_itinerario INTEGER PRIMARY KEY AUTOINCREMENT,
+    viaggiatore REFERENCES users(username),
+    citta TEXT NOT NULL,
+    paese TEXT, 
+    itinerario TEXT 
 );

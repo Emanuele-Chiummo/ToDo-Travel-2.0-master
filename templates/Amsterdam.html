@@ -17,71 +17,75 @@
 
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/home">
-            <img src="https://cdn-icons-png.flaticon.com/512/3388/3388607.png" alt="Logo" width="30" height="30"
-              class="d-inline-block align-text-top">
-            Travel Organization
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-            <div class="offcanvas-header">
-              <a class="navbar-brand" href="/home">
-                <img class="avatar d-inline-block align-text-top" src="{{ avatars.default(size='s') }}" alt="Logo" width="30" height="30"
-                  class="d-inline-block align-text-top">
-                {{session['username']}}
-              </a>
-              
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <a class="navbar-brand" href="/home">
+                <img src="https://cdn-icons-png.flaticon.com/512/3388/3388607.png" alt="Logo" width="30" height="30"
+                    class="d-inline-block align-text-top">
+                Travel Organization
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <a class="navbar-brand" href="/home">
+                        <img class="avatar d-inline-block align-text-top" src="{{ avatars.default(size='s') }}"
+                            alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                        {{session['username']}}
+                    </a>
+
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{username}}/edit-profile">Edit Profile</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="/my-travel" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                My Travel
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="/my-travel">Viaggi</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/itinerario">Itinerario</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Bagaglio</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Trasporti</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="/diario">Diario</a></li>
+
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Log Out</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{username}}/edit-profile">Edit Profile</a>
-                </li>
-                
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="/my-travel" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    My Travel
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="/my-travel">Viaggi</a></li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="/itinerario">Itinerario</a></li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Bagaglio</a></li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Trasporti</a></li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="/diario">Diario</a></li>
-                    
-                    
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/logout">Log Out</a>
-                </li>
-              </ul>
-              <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success" type="submit">Search</button>
-              </form>
-            </div>
-          </div>
         </div>
-      </nav>
+    </nav>
 
     <header>
         <div class="px-2 py-2 my-2 text-center">
@@ -172,6 +176,7 @@
                     Il tour offre una panoramica generale della città e dei suoi punti di riferimento. Benché gratuito,
                     assicurati di lasciare la mancia alla tua guida!</p>
                 <h6>Piazza Dam</h6>
+                <img src="../static/uploads/piazza dam image.jpg" alt="">
                 <p>Essenzialmente la piazza principale della città, Piazza Dam presenta diversi punti di riferimento
                     importanti e ospita spesso eventi. Il punto di riferimento più notevole è il Palazzo Reale, la
                     residenza della famiglia reale olandese.
@@ -199,6 +204,7 @@
                     celeberrimo di Londra ed è una tappa obbligata se lo visiti con i bambini!
                 </p>
                 <h6>Van Gogh Museum</h6>
+                <img src="../static/uploads/van gogh museum.jpg" alt="">
                 <p>Tra i tanti musei della città, il più popolare e visitato è il Van Gogh Museum, dedicato al famoso
                     pittore olandese.
                     <br>
@@ -227,6 +233,7 @@
                     orari di ingresso specifici.
                 </p>
                 <h6>Rijksmuseum</h6>
+                <img src="../static/uploads/Rijksmuseum-Photo.jpg" alt="">
                 <p>Uno dei musei più illustri della città è il Rijksmuseum, un museo nazionale incentrato sull’arte e la
                     storia. Ospitato all’interno di un grande edificio del XIX secolo, il Rijksmuseum vanta 80 gallerie
                     piene di arte e oggetti che raccontano e ripercorrono la storia dei Paesi Bassi.
@@ -242,6 +249,7 @@
                     sculture e manufatti storici.
                 </p>
                 <h6>Crociera sui canali</h6>
+                <img src="../static/uploads/canali amsterdam.jpg" alt="">
                 <p>Amsterdam è una città legata all’acqua; un po’ come la nostra famosissima Venezia (che rende noi
                     italiani orgogliosi in tutto il mondo) anche Amsterdam è cresciuta intorno ai suoi canali e al fiume
                     Amstel.
@@ -251,6 +259,7 @@
                     sicuramente il modo migliore per conoscerla.
                 </p>
                 <h6>Alla sera: tour nel Red Light District (RLD), il quartiere a luci rosse di Amsterdam</h6>
+                <img src="../static/uploads/red light amsterdam.jpg" alt="">
                 <p>Se sei interessato a saperne di più sulla storia di Amsterdam, il Red Light District è l’ex quartiere
                     a luci rosse.
                     <br>
@@ -270,9 +279,18 @@
                 </p>
                 <h6>Mappa dell’itinerario del Primo giorno ad Amsterdam</h6>
                 <img src="../static/uploads/itinerario-amsterda-giorno-1-1024x453.jpg" alt="">
+                <button type="button" class="btn btn-link  btn-floating" id="btn-back-to-top">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                        class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+                    </svg>
+                </button>
             </div>
             <div class="tab-pane fade" id="giorno2-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
                 <h6>Cosa vedere ad Amsterdam in 3 giorni: Giorno 2</h6>
+                <h6>Casa di Anne Frank</h6>
+                <img src="../static/uploads/anne frank amsterdam.jpg" alt="">
                 <p>Cominceremo il nostro itinerario del secondo giorno ad Amsterdam, andando a visitare la Casa di Anne
                     Frank e il quartiere di Joordan.
                     <br>
@@ -301,6 +319,7 @@
                     specifica. L’80% dei biglietti viene rilasciato esattamente 2 mesi prima.
                 </p>
                 <h6>Quartiere di Jordaan</h6>
+                <img src="../static/uploads/quartiere jordaan amsterdam.jpg" alt="">
                 <p>Dalla casa di Anna Frank, puoi attraversare il canale e ritrovarti nel quartiere di Jordaan. Questo
                     sobborgo è passato attraverso una riqualificazione e rinnovamento negli ultimi anni ed è ora
                     piuttosto elegante e vivace.
@@ -322,6 +341,7 @@
                 </ul>
                 </p>
                 <h6>Museo del Tulipano</h6>
+                <img src="../static/uploads/amsterdam-tulip-museum.jpg" alt="">
                 <p>Se si pensa ad Amsterdam si pensa ai tulipani. Quanti di noi sognano di visitare il Keukenhof durante
                     la fioritura?
                     <br>
@@ -346,6 +366,7 @@
                     <b>Orari:</b> Aperto tutti i giorni dalle 10:00 alle 18:00
                 </p>
                 <h6>Pranza al Foodhallen</h6>
+                <img src="../static/uploads/Foodhallen-Amsterdam.jpg" alt="">
                 <p>La Foodhallen è ciò che suggerisce il nome: una food hall, ovvero un mercato alimentare al coperto.
                     Qui troverai un sacco di cibo delizioso ed è il posto perfetto dove pranzare per poi continuare con
                     il nostro itinerario.
@@ -357,6 +378,7 @@
                     <b>Orari:</b> Aperto tutti i giorni dalle 12:00 alle 12:00.
                 </p>
                 <h6>Vondelpark</h6>
+                <img src="../static/uploads/Vondelpark amsterdam.jpg" alt="">
                 <p>Se hai tempo e se vuoi vedere una parte diversa di Amsterdam, una passeggiata a Jordaan ti porterà
                     all’imponente Vondelpark.
                     <br>
@@ -365,6 +387,7 @@
                     ritmo e un modo per respirare un po’.
                 </p>
                 <h6>Museum Amsterdam (Amsterdams Historisch Museum)</h6>
+                <img src="../static/uploads/Amsterdams Historisch Museum.jpg" alt="">
                 <p>Dato che Amsterdam è una delle città più visitate d’Europa, se non del mondo, non è difficile
                     imbattersi in un museo ad ogni angolo. Il ricco patrimonio della capitale olandese è esposto in
                     numerose gallerie e musei che raccontano la storia della città.
@@ -381,6 +404,7 @@
                     Ci sono un sacco di cimeli, mappe, dipinti e display audiovisivi in ​​tutto il museo.
                 </p>
                 <h6>Alla sera: birrificio Gooyer</h6>
+                <img src="../static/uploads/birrificio Gooyer amsterdam.jpg" alt="">
                 <p>Se vuoi bere qualcosa in un posto speciale ad Amsterdam, dovresti visitare il birrificio De Gooyer e
                     assaggiare una delle tante birre che produce. Il birrificio inoltre si trova accanto a un bellissimo
                     mulino a vento, uno dei pochi rimasti ad Amsterdam e un luogo unico da visitare.
@@ -392,94 +416,141 @@
                 </p>
                 <h6>Mappa dell’itinerario del secondo giorno ad Amsterdam</h6>
                 <img src="../static/uploads/Amsterdam-2-giorno-ok-1024x694.jpg" alt="">
+                <button type="button" class="btn btn-link  btn-floating" id="btn-back-to-top2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                        class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+                    </svg>
+                </button>
             </div>
             <div class="tab-pane fade" id="giorno3-tab-pane" role="tabpanel" aria-labelledby="giorno3-tab" tabindex="0">
                 <h6>Cosa vedere ad Amsterdam in 3 giorni: Giorno 3</h6>
                 <h6>Heineken Experience</h6>
-                <p>Che cos’è? L’Heineken Experience è un bel museo da visitare che racconta la storia della Heineken, uno dei marchi di birra più famosi al mondo. Se come me ami la birra, lo adorerai! Qui imparerai tutto sulla Heineken, come è nata, come si produce, come si è evoluta nel tempo.
+                <img src="../static/uploads/Heineken Experience amsterdam.jpg" alt="">
+                <p>Che cos’è? L’Heineken Experience è un bel museo da visitare che racconta la storia della Heineken,
+                    uno dei marchi di birra più famosi al mondo. Se come me ami la birra, lo adorerai! Qui imparerai
+                    tutto sulla Heineken, come è nata, come si produce, come si è evoluta nel tempo.
                     <br>
                     <br>
-                    L’Heineken Experience è una delle attrazioni turistiche più popolari di Amsterdam!</p>
+                    L’Heineken Experience è una delle attrazioni turistiche più popolari di Amsterdam!
+                </p>
                 <h6>Museo Van Loon</h6>
+                <img src="../static/uploads/Museo Van Loon amsterdam.jpg" alt="">
                 <p>Il Museum Van Loon è una casa costruita nel 1672 che si trova sul canale Keizersgracht.
                     <br>
                     <br>
-                    La casa era di proprietà della ricca famiglia di mercanti Van Loon che visse nella casa nel XIX secolo.
+                    La casa era di proprietà della ricca famiglia di mercanti Van Loon che visse nella casa nel XIX
+                    secolo.
                     <br>
                     <br>
                     Willem van Loon ha co-fondato la Compagnia Olandese delle Indie Orientali nel 1602.
                     <br>
                     <br>
-                    La casa è notevole, con un giardino lussureggiante che farà sentire i visitatori come se fossero entrati in un palazzo romano, con enormi stanze degne di un re. L’interno ti farà desiderare di aver vissuto lì.
+                    La casa è notevole, con un giardino lussureggiante che farà sentire i visitatori come se fossero
+                    entrati in un palazzo romano, con enormi stanze degne di un re. L’interno ti farà desiderare di aver
+                    vissuto lì.
                     <br>
                     <br>
-                    Keizersgracht 672, Centrum, +31 20 624 5255, museumvanloon.nl. Aperto tutti i giorni dalle 10:00 alle 17:00. L’ingresso è di 12,50 euro.</p>
-                    <h6>FOAM</h6>
-                    <p>Il FOAM è un museo della fotografia che  ospita immagini meravigliose, ma non molto visitato nonostante si trovi nella parte principale della città.
-                        <br>
-                        <br>
-                        È un must per ogni amante della fotografia. Le quattro mostre cambiano continuamente, quindi non sai mai cosa potresti trovare (controlla online per i dettagli)! Hanno anche un bellissimo giardino esterno. È un piccolo museo e non ci vuole molto per vederlo.
-                        <br>
-                        <br>
-                        <b>Indirizzo:</b> Keizersgracht 609, Centrum, +31 20 551 6500, foam.org.
-                        <br>
-                        <br>
-                        <b>Orari:</b> Aperto tutti i giorni dalle 10:00 alle 18:00 (giovedì e venerdì 21:00)</p>
-                        <h6>Jewish Historical Museum (Museo di storia ebraica)</h6>
-                        <p>Il museo di storia Ebraica presenta una storia molto approfondita di Amsterdam. È grande, quindi avrai bisogno di 3-4 ore se vuoi visitarlo davvero nei dettagli.
-                            <br>
-                            <br>
-                            Spesso trascurato a favore della Casa di Anna Frank, il Jewish Historical Museum racconta la storia della posizione di spicco e influente degli ebrei ad Amsterdam.
-                            <br>
-                            <br>
-                            La mostra sulla seconda guerra mondiale fa un ottimo lavoro nell’evidenziare il compiacimento, la resistenza e il senso di colpa olandesi per l’Olocausto.
-                            <br>
-                            <br>
-                            Con 11.000 oggetti, manufatti e opere d’arte, è l’unico museo di storia ebraica del paese.
-                            <br>
-                            <br>
-                            <b>Indirizzo:</b> Nieuwe Amstelstraat 1, Centrum
-                            <br>
-                            <br>
-                            <b>Orario:</b> Aperto tutti i giorni dalle 11:00 alle 17:00. </p>
-                            <h6>Rembrandt House Museum</h6>
-                            <p>Il pittore olandese Rembrandt Harmenszoon van Rijn è generalmente considerato uno degli artisti più prolifici e talentuosi della storia.
-                                <br>
-                                <br>
-                                Se sei appassionato il Rembrandt House Museum è da non perdere.
-                                <br>
-                                <br>
-                                Ha vissuto e lavorato in questa casa, oggi trasformata in museo, tra il 1639 e il 1658 durante l’età dell’oro olandese.
-                                <br>
-                                <br>
-                                I visitatori possono esplorare la casa per avere un’idea di come lavorava e viveva (hanno ricreato la casa come era esattamente ai tempi di Rembrandt).
-                                <br>
-                                <br>
-                                <b>Indirizzo:</b> Jodenbreestraat 4, Rembrandtplein, Centrum
-                                <br>
-                                <br>
-                                <b>Orari:</b> Aperto dal martedì alla domenica dalle 10:00 alle 18:00.</p>
-                                <h6>Alla sera: Nightlife di Amsterdam, Pub e locali!</h6>
-                                <p>Qui sotto trovi i locali, le discoteche e le birrerie più famose di Amsterdam!
-                                    <br>
-                                    <br>
-                                    Sky Lounge è uno dei bar più costosi di Amsterdam, ma ne vale davvero la pena. È proprio in centro e ha una terrazza con una vista incredibile sullo skyline della città.
-                                    <br>
-                                    <br>
-                                    Hannekes Boom – un bel posto sull’acqua. Inoltre, ci sono molti posti per sedersi fuori e per parcheggiare le barche, infatti puoi arrivarci anche in barca!
-                                    <br>
-                                    <br>
-                                    Waterkant –  Un altro ottimo posto per un drink serale sui canali. Waterkant ha sia cibo che bevande, il che è ottimo per prepararsi per una serata fuori. È anche proprio accanto a Liedesplein, quindi se hai deciso poi di andare da qualche altra parte, hai tante scelte nelle vicinanze.
-                                    <br>
-                                    <br>
-                                    Jimmy Woo è un popolare night club “fantasioso” a Leidseplein. È uno dei pochi posti in città che segue un rigido codice di abbigliamento, ma è super divertente e ha un’atmosfera più pulita rispetto alla maggior parte dei club in questa zona.
-                                    <br>
-                                    <br>
-                                    L’Amsterdam Nightlife Ticket include più di 20 discoteche e bar, a cui puoi accedere tutte le volte che vorrai durante il tempo di validità della tessera.</p>
-                                    <h6>Mappa dell’itinerario dei Terzo giorno ad Amsterdam</h6>
-                                    <img src="../static/uploads/mappa-amsterdam-giorno-3.jpg" alt="">
+                    Keizersgracht 672, Centrum, +31 20 624 5255, museumvanloon.nl. Aperto tutti i giorni dalle 10:00
+                    alle 17:00. L’ingresso è di 12,50 euro.
+                </p>
+                <h6>FOAM</h6>
+                <img src="../static/uploads/foam amsterdam.jpg" alt="">
+                <p>Il FOAM è un museo della fotografia che ospita immagini meravigliose, ma non molto visitato
+                    nonostante si trovi nella parte principale della città.
+                    <br>
+                    <br>
+                    È un must per ogni amante della fotografia. Le quattro mostre cambiano continuamente, quindi non sai
+                    mai cosa potresti trovare (controlla online per i dettagli)! Hanno anche un bellissimo giardino
+                    esterno. È un piccolo museo e non ci vuole molto per vederlo.
+                    <br>
+                    <br>
+                    <b>Indirizzo:</b> Keizersgracht 609, Centrum, +31 20 551 6500, foam.org.
+                    <br>
+                    <br>
+                    <b>Orari:</b> Aperto tutti i giorni dalle 10:00 alle 18:00 (giovedì e venerdì 21:00)
+                </p>
+                <h6>Jewish Historical Museum (Museo di storia ebraica)</h6>
+                <img src="../static/uploads/Jewish Historical Museum amsterdam.jpg" alt="">
+                <p>Il museo di storia Ebraica presenta una storia molto approfondita di Amsterdam. È grande, quindi
+                    avrai bisogno di 3-4 ore se vuoi visitarlo davvero nei dettagli.
+                    <br>
+                    <br>
+                    Spesso trascurato a favore della Casa di Anna Frank, il Jewish Historical Museum racconta la storia
+                    della posizione di spicco e influente degli ebrei ad Amsterdam.
+                    <br>
+                    <br>
+                    La mostra sulla seconda guerra mondiale fa un ottimo lavoro nell’evidenziare il compiacimento, la
+                    resistenza e il senso di colpa olandesi per l’Olocausto.
+                    <br>
+                    <br>
+                    Con 11.000 oggetti, manufatti e opere d’arte, è l’unico museo di storia ebraica del paese.
+                    <br>
+                    <br>
+                    <b>Indirizzo:</b> Nieuwe Amstelstraat 1, Centrum
+                    <br>
+                    <br>
+                    <b>Orario:</b> Aperto tutti i giorni dalle 11:00 alle 17:00.
+                </p>
+                <h6>Rembrandt House Museum</h6>
+                <img src="../static/uploads/Rembrandt House Museum amsterdam.jpg" alt="">
+                <p>Il pittore olandese Rembrandt Harmenszoon van Rijn è generalmente considerato uno degli artisti più
+                    prolifici e talentuosi della storia.
+                    <br>
+                    <br>
+                    Se sei appassionato il Rembrandt House Museum è da non perdere.
+                    <br>
+                    <br>
+                    Ha vissuto e lavorato in questa casa, oggi trasformata in museo, tra il 1639 e il 1658 durante l’età
+                    dell’oro olandese.
+                    <br>
+                    <br>
+                    I visitatori possono esplorare la casa per avere un’idea di come lavorava e viveva (hanno ricreato
+                    la casa come era esattamente ai tempi di Rembrandt).
+                    <br>
+                    <br>
+                    <b>Indirizzo:</b> Jodenbreestraat 4, Rembrandtplein, Centrum
+                    <br>
+                    <br>
+                    <b>Orari:</b> Aperto dal martedì alla domenica dalle 10:00 alle 18:00.
+                </p>
+                <h6>Alla sera: Nightlife di Amsterdam, Pub e locali!</h6>
+                <p>Qui sotto trovi i locali, le discoteche e le birrerie più famose di Amsterdam!
+                    <br>
+                    <br>
+                    Sky Lounge è uno dei bar più costosi di Amsterdam, ma ne vale davvero la pena. È proprio in centro e
+                    ha una terrazza con una vista incredibile sullo skyline della città.
+                    <br>
+                    <br>
+                    Hannekes Boom – un bel posto sull’acqua. Inoltre, ci sono molti posti per sedersi fuori e per
+                    parcheggiare le barche, infatti puoi arrivarci anche in barca!
+                    <br>
+                    <br>
+                    Waterkant – Un altro ottimo posto per un drink serale sui canali. Waterkant ha sia cibo che bevande,
+                    il che è ottimo per prepararsi per una serata fuori. È anche proprio accanto a Liedesplein, quindi
+                    se hai deciso poi di andare da qualche altra parte, hai tante scelte nelle vicinanze.
+                    <br>
+                    <br>
+                    Jimmy Woo è un popolare night club “fantasioso” a Leidseplein. È uno dei pochi posti in città che
+                    segue un rigido codice di abbigliamento, ma è super divertente e ha un’atmosfera più pulita rispetto
+                    alla maggior parte dei club in questa zona.
+                    <br>
+                    <br>
+                    L’Amsterdam Nightlife Ticket include più di 20 discoteche e bar, a cui puoi accedere tutte le volte
+                    che vorrai durante il tempo di validità della tessera.
+                </p>
+                <h6>Mappa dell’itinerario dei Terzo giorno ad Amsterdam</h6>
+                <img src="../static/uploads/mappa-amsterdam-giorno-3.jpg" alt="">
+                <button type="button" class="btn btn-link  btn-floating" id="btn-back-to-top3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                        class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+                    </svg>
+                </button>
             </div>
-            </div>
+        </div>
         </div>
     </main>
     <script>
@@ -493,6 +564,43 @@
             })
         })
     </script>
+    <script>
+        let mybutton = document.getElementById("btn-back-to-top");
+        let mybutton2 = document.getElementById("btn-back-to-top2");
+        let mybutton3 = document.getElementById("btn-back-to-top3");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction();
+        };
+        
+
+        function scrollFunction() {
+            if (
+                document.body.scrollTop > 20 ||
+                document.documentElement.scrollTop > 20
+            ) {
+                mybutton.style.display = "block";
+                mybutton2.style.display = "block";
+                mybutton3.style.display ="block";
+            } else {
+                mybutton.style.display = "none";
+                mybutton2.style.display = "none";
+                mybutton3.style.display = "none";
+            }
+        }
+        // When the user clicks on the button, scroll to the top of the document
+        mybutton.addEventListener("click", backToTop);
+        mybutton3.addEventListener("click", backToTop);
+        mybutton2.addEventListener("click", backToTop);
+
+        function backToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
@@ -512,10 +620,10 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: #212529;">
-      © 2022 Copyright:
-      <a class="text-white" href="#">Travel Organization</a>
+        © 2022 Copyright:
+        <a class="text-white" href="#">Travel Organization</a>
     </div>
     <!-- Copyright -->
-  </footer>
+</footer>
 
 </html>
