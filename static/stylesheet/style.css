@@ -29,7 +29,9 @@
     margin:0 auto;
     padding:20px;
 }
-
+header{
+    padding-top: 60px;
+}
 .form-group{
     padding:5px;
 }
@@ -116,4 +118,8 @@ padding: 20px;
     display: block;
     margin: 0 auto;
     width: 700px;
+}
+
+.text-center a{
+    text-decoration: none;
 }
