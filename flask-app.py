@@ -66,7 +66,9 @@ def google():
 @app.route('/google/auth/')
 def google_auth():
     token = oauth.google.authorize_access_token()
+    user = oauth.google.parse_id_token(token)
     session['username'] = token['userinfo']
+    print(" Google User ", user)
     return redirect('/home')
 
 @app.route('/register', methods=["POST", "GET"])
@@ -101,6 +103,7 @@ def login():
 
 @app.route('/home', methods=['POST', "GET"])
 def home():
+
     if 'username' in session:
         connection = connection_db()
         posts = connection.execute('SELECT * FROM posts').fetchall()
@@ -270,8 +273,16 @@ def delete_post(idx):
     connection.commit()
     connection.close()
     return redirect('/home')
-    
 
+@app.route('/itinerario', methods=('GET', 'POST'))
+def itinerario():
+
+    return render_template('itinerario.html')   
+
+@app.route('/amsterdam')
+def Amsterdam():
+
+    return render_template('Amsterdam.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -48,13 +48,18 @@ table, th, td{
     margin: 0 auto; /* Added */
     float: none; /* Added */
     margin-bottom: 20px; /* Added */
-    box-shadow: 2px 2px gainsboro;
-    
+    box-shadow: 1px 1px gainsboro;
+    width: 18rem;
+}
+.card img{
+    width: 286px;
+    height: 180px;
 }
 .button a{
-    float: left;
+    float:left;
     display:block;
     margin-right: 20px;
+    
     
 }
 
@@ -81,4 +86,34 @@ table, th, td{
     padding: 10px;
     font-family: 'Poppins', sans-serif;
     color: rgb(85, 85, 85);
+}
+
+
+.consiglio-viaggio img{
+    width:400px;
+    display: block;
+    margin:0 auto;
+    padding-bottom: 20px;
+}
+
+.consiglio-viaggio h1{
+    text-align:center;
+}
+.consiglio-viaggio p{
+    padding: 20px;
+}
+.consiglio-viaggio hr{
+padding: 20px;
+}
+.consiglio-viaggio h6{
+    padding-left: 20px;
+}
+.tab-content{
+    padding:20px;
+}
+.tab-content img{
+    padding: 20px;
+    display: block;
+    margin: 0 auto;
+    width: 700px;
 }
