@@ -304,8 +304,24 @@ def your_itinerari():
     connection.close()
     return render_template('your_itinerari.html',username=session['username'], itinerario=itinerario)
 
-@app.route
+@app.route('/<int:idx>/edit_itinerario', methods=('GET', 'POST'))
+def edit_itinerario(idx):
+    connection = connection_db()
+    itinerario = connection.execute(
+        'SELECT * from itinerario where id_itinerario=?', (idx,)).fetchone()
+    connection.close()
 
+    if request.method == 'POST':
+        citta = request.form['citta']
+        paese = request.form['paese']
+        itinerario = request.form['itinerario']
+        connection = connection_db()
+        connection.execute(
+            'UPDATE itinerario SET citta=?, paese=?, itinerario =? WHERE id_itinerario = ?', (citta, paese, itinerario, idx,))
+        connection.commit()
+        connection.close()
+        return redirect('/home')
+    return render_template('edit_itinerario.html', itinerario=itinerario)
 
 @app.route('/amsterdam')
 def Amsterdam():
