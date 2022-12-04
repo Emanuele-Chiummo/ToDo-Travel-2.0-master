@@ -34,7 +34,6 @@ def check_user(username, password):
         return False
 
 app = Flask(__name__)
-oauth = OAuth(app)
 avatars = Avatars(app)
 app.secret_key = os.urandom(12)
 
@@ -42,34 +41,7 @@ app.secret_key = os.urandom(12)
 def index():
     return render_template('login.html')
 
-@app.route('/google/')
-def google():
 
-    GOOGLE_CLIENT_ID = ''
-    GOOGLE_CLIENT_SECRET = ''
-    CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
-    oauth.register(
-        name='google',
-        client_id=GOOGLE_CLIENT_ID,
-        client_secret=GOOGLE_CLIENT_SECRET,
-        server_metadata_url=CONF_URL,
-        client_kwargs={
-            'scope': 'openid email profile'
-        }
-    )
-
-    # Redirect to google_auth function
-    redirect_uri = url_for('google_auth', _external=True)
-    print(redirect_uri)
-    return oauth.google.authorize_redirect(redirect_uri)
-
-@app.route('/google/auth/')
-def google_auth():
-    token = oauth.google.authorize_access_token()
-    user = oauth.google.parse_id_token(token)
-    session['username'] = token['userinfo']
-    print(" Google User ", user)
-    return redirect('/home')
 
 @app.route('/register', methods=["POST", "GET"])
 def register():
@@ -322,6 +294,14 @@ def edit_itinerario(idx):
         connection.close()
         return redirect('/home')
     return render_template('edit_itinerario.html', itinerario=itinerario)
+
+@app.route('/<int:idx>/delete_itinerario', methods=('POST',))
+def delete_itinerario(idx):
+    connection = connection_db()
+    connection.execute('DELETE FROM itinerario WHERE id_itinerario =? ', (idx,))
+    connection.commit()
+    connection.close()
+    return redirect('/home')
 
 @app.route('/amsterdam')
 def Amsterdam():
