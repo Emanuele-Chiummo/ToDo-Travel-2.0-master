@@ -308,5 +308,30 @@ def Amsterdam():
 
     return render_template('Amsterdam.html')
 
+@app.route('/bagaglio', methods=('GET', 'POST'))
+def bagaglio():
+    connection = connection_db()
+    bagaglio = connection.execute('SELECT * from bagaglio where viaggiatore =?',(session['username'],)).fetchall()
+    connection.close()
+
+    if request.method =='POST':
+        memo = request.form['memo']
+        viaggiatore = session['username']
+        connection = connection_db()
+        connection.execute ('INSERT INTO bagaglio (memo, viaggiatore) VALUES (?, ?)',(memo, viaggiatore,))
+        connection.commit()
+        connection.close()
+        return redirect('/bagaglio')
+
+    return render_template('bagaglio.html', bagaglio=bagaglio)
+
+@app.route('/<int:idx>/delete_memo', methods=('POST',))
+def delete_bagaglio(idx):
+    connection = connection_db()
+    connection.execute('DELETE FROM bagaglio WHERE id_bagaglio =? ', (idx,))
+    connection.commit()
+    connection.close()
+    return redirect('/bagaglio')
+
 if __name__ == '__main__':
     app.run(debug=True)

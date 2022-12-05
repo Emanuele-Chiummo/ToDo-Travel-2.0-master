@@ -19,6 +19,7 @@ CREATE TABLE users (
     password TEXT not null
 );
 
+
 DROP TABLE IF EXISTS travel;
 CREATE TABLE travel(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -65,3 +66,10 @@ CREATE TABLE itinerario(
     paese TEXT, 
     itinerario TEXT 
 );
+
+DROP TABLE IF EXISTS bagaglio;
+CREATE TABLE bagaglio(
+    id_bagaglio INTEGER PRIMARY KEY AUTOINCREMENT,
+    viaggiatore REFERENCES users(username),
+    memo TEXT 
+)

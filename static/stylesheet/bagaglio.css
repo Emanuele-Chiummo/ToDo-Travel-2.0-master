@@ -1,0 +1,37 @@
+/* ==========================================
+    FOR DEMO PURPOSE
+  ========================================== */
+  .holder {
+    min-height: 20vh;
+  }
+
+  .rounded {
+    border-radius: 1rem !important;
+  }
+  
+  .text-gray {
+    color: #aaa;
+  }
+  
+  input:checked + label {
+    text-decoration: line-through;
+    color: #adb5bd;
+  }
+  
+  label {
+    cursor: pointer;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+
+.form-check button {
+  border: none;
+  background-color: white;
+}
+
+
+
+
+
