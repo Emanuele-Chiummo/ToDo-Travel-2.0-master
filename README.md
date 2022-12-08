@@ -1,6 +1,8 @@
-### Travel-Organization Information
+## Travel-Organization Information
 
 Travel Organization was born from the need to better organize a trip by keeping all useful information in one place. 
+
+## Features
 
 Travel Organization will allow us to 
 - Enter information about a new trip, (plane, stay, etc.), 
@@ -18,7 +20,10 @@ To use Travel Organization we should register by entering:
 
 
 
-### Privacy
+
+
+
+## Privacy
 
 Travel Organization has visibility criteria for which each user will only and exclusively see their data 
 
