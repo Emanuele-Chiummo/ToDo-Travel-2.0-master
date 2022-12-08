@@ -29,6 +29,18 @@ To gain access in the development phase we could use the user name of TEST :
 username: test.user
 password: test
 
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  pip install -r requirements.txt
+```
+
+```bash
+  python flask-app.py
+```
+
 ## Tech Stack
 
 **Front-End:** HTML, CSS, Javascript
