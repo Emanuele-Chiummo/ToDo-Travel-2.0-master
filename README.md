@@ -17,12 +17,6 @@ To use Travel Organization we should register by entering:
 - password
 
 
-## Tech Stack
-
-**Front-End:** HTML, CSS, Javascript
-
-**Back-End:** Flask, SQL
-
 
 ### Privacy
 
@@ -34,6 +28,13 @@ To gain access in the development phase we could use the user name of TEST :
 
 username: test.user
 password: test
+
+## Tech Stack
+
+**Front-End:** HTML, CSS, Javascript
+
+**Back-End:** Flask, SQL
+
 
 ## Authors
 
