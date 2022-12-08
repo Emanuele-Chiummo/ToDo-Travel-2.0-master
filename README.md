@@ -27,10 +27,6 @@ To use Travel Organization we should register by entering:
 - password
 
 
-
-
-
-
 ## Privacy
 
 Travel Organization has visibility criteria for which each user will only and exclusively see their data 
