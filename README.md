@@ -31,11 +31,12 @@ password: test
 
 ## Running Tests
 
-To run tests, run the following command
+To install all the requirements
 
 ```bash
   pip install -r requirements.txt
 ```
+To run tests, run the following command
 
 ```bash
   python flask-app.py
