@@ -1,7 +1,9 @@
 import sqlite3
-from flask import Flask, redirect, flash, render_template, request, session, url_for, send_from_directory, make_response
+from flask import Flask, redirect, flash, render_template, request, session, url_for, send_from_directory, make_response, abort
 from werkzeug.utils import secure_filename
 from flask_avatars import Avatars
+from flask_googlemaps import GoogleMaps
+from flask_googlemaps import Map
 from authlib.integrations.flask_client import OAuth
 import os
 
@@ -11,6 +13,21 @@ def connection_db():
     connection = sqlite3.connect('database.db')
     connection.row_factory = sqlite3.Row
     return connection
+
+class School:
+    def __init__(self, key, name, lat, lng):
+        self.key  = key
+        self.name = name
+        self.lat  = lat
+        self.lng  = lng
+
+schools = (
+    School('Amsterdam',      'Amsterdam',   52.377956,  4.897070),
+    School('Roma', 'Roma',            41.902782, 12.496366),
+    School('Londra', 'Londra', 51.500153, -0.1262362)
+)
+schools_by_key = {school.key: school for school in schools}
+
 
 
 
@@ -34,6 +51,8 @@ def check_user(username, password):
         return False
 
 app = Flask(__name__)
+app.config['GOOGLEMAPS_KEY'] = "AIzaSyC-4cZxCR828lUldyeRECqUsg6T4FAtgDc"
+GoogleMaps(app, key="AIzaSyC-4cZxCR828lUldyeRECqUsg6T4FAtgDc")
 avatars = Avatars(app)
 app.secret_key = os.urandom(12)
 
@@ -332,6 +351,19 @@ def delete_bagaglio(idx):
     connection.commit()
     connection.close()
     return redirect('/bagaglio')
+
+@app.route("/trasporti")
+def trasporti():
+
+    return render_template('trasporti.html',schools=schools)
+
+@app.route("/<school_code>")
+def show_school(school_code):
+    school = schools_by_key.get(school_code)
+    if school:
+        return render_template('map.html', school=school)
+    else:
+        abort(404)
 
 if __name__ == '__main__':
     app.run(debug=True)

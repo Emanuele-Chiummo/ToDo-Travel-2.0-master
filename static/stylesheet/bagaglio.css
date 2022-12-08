@@ -29,6 +29,7 @@
 .form-check button {
   border: none;
   background-color: white;
+  float: right;
 }
 
 

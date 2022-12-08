@@ -152,3 +152,34 @@ padding: 20px;
     position:absolute;
     width: 100%;
   }
+  /* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+#map {
+    height: 100%;
+  }
+  
+  /* 
+   * Optional: Makes the sample page fill the window. 
+   */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  /*
+.text-container-1{
+    width: 100%;
+    margin: 0 auto;
+    background-color: gainsboro;
+    border-radius:10px;
+}
+*/
+.container-maps{
+    padding:50px;
+}
+.container-maps map{
+    padding: 100px;
+}

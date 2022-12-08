@@ -97,48 +97,26 @@
   </header>
 
   <main>
-    <form method="POST" class="m-5">
-        <div class="form-group">
-            <label for="compagnia">Memo</label>
-            <input type="text" name="memo" placeholder="Inserisci cosa portarti" class="form-control" required>{{request.form['memo']}}</textarea>
-        </div>
-    </form>
-    <div class="holder d-flex align-items-center justify-content-center">
-    
-        <div class="container">
-            
-    
-            
-            <div class="row">
-                <div class="col-lg-5 mx-auto">
-    
-                    <!-- CHECKBOX LIST -->
-                    <div class="card rounded border-0 shadow-sm p-3 mb-5 bg-body rounded ">
-                        <div class="card-body ">
-                            <div class="d-flex align-items-center mb-4 pb-4 border-bottom"> <a href="#"></a><i class="bi bi-briefcase-fill"style="font-size: 2rem; color: #2196f3;"></i></i>
-                                <div class="ms-3">
-                                    <h4 class="text-uppercase fw-weight-bold mb-0">Bagaglio</h4>
-                                    <p class="text-gray fst-italic mb-0">Non dimendicarti nulla</p>
-                                    
-                                </div>
-                            </div>
-                            
-                           
-                            {% for bagaglio in bagaglio %}
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" id="flexCheck1" type="checkbox" name="hello" value="YES">
-                                <label class="form-check-label" for="flexCheck1">{{bagaglio.memo}}</label>
-                                <form action="{{bagaglio.id_bagaglio}}/delete_memo" method="post">  
-                                    <button type="" class=""><i class="bi bi-trash3" style="font-size: 1rem; color:red;"></i></button>
-                                </form>
-                            </div>
-                            {% endfor %}
-                        
-                        </div>
-                    </div>
+    <div class="container">
+        <h1>Choose a School</h1>
+        {% for school in schools %}
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Trasporti a {{school.name}}
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>Scropri di più sui Trasporti di {{school.name}}</strong>
+                  <p><a class="btn btn-primary btn" href="{{school.key}}">View more</a></p>
                 </div>
-            </div>
-        </div>
+              </div>
+        
+             
+          
+        {% endfor %}
     </div>
 
 </main>

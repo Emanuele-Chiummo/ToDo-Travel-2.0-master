@@ -71,5 +71,29 @@ DROP TABLE IF EXISTS bagaglio;
 CREATE TABLE bagaglio(
     id_bagaglio INTEGER PRIMARY KEY AUTOINCREMENT,
     viaggiatore REFERENCES users(username),
-    memo TEXT 
-)
+    memo TEXT,
+    checkbox INT
+);
+
+INSERT INTO users(username, first_name, last_name, email, password) VALUES(
+    'emanuele.chiummo',
+    'Emanuele',
+    'Chiummo',
+    'emanuelechiummo@outlook.it',
+    'emanuele'
+);
+INSERT INTO users(username, first_name, last_name, email, password) VALUES(
+    'ada.acqua',
+    'Ada',
+    'Acqua',
+    'ada.acqua@libero.it',
+    'ada'
+);
+INSERT INTO users(username, first_name, last_name, email, password) VALUES(
+    'user.test',
+    'User',
+    'Test',
+    'user.test@gmail.com',
+    'test'
+);
+
