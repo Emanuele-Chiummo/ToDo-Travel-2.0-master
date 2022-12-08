@@ -68,6 +68,13 @@ To run tests, run the following command
 
 **Back-End:** Python, Flask, SQL
 
+## Roadmap
+
+- Responsive layouts for all devices [Completed]
+- Integration with Google Maps API [Completed]
+- Integration with Gooogle OAuth [On Hold]
+- Save the checkbox value into bagaglio [In Progress]
+
 ## Demo
 
 - [Demo](https://echiummo.pythonanywhere.com/)
