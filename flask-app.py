@@ -2,8 +2,6 @@ import sqlite3
 from flask import Flask, redirect, flash, render_template, request, session, url_for, send_from_directory, make_response, abort
 from werkzeug.utils import secure_filename
 from flask_avatars import Avatars
-from flask_googlemaps import GoogleMaps
-from flask_googlemaps import Map
 from authlib.integrations.flask_client import OAuth
 import os
 
@@ -51,8 +49,6 @@ def check_user(username, password):
         return False
 
 app = Flask(__name__)
-app.config['GOOGLEMAPS_KEY'] = "AIzaSyC-4cZxCR828lUldyeRECqUsg6T4FAtgDc"
-GoogleMaps(app, key="AIzaSyC-4cZxCR828lUldyeRECqUsg6T4FAtgDc")
 avatars = Avatars(app)
 app.secret_key = os.urandom(12)
 
