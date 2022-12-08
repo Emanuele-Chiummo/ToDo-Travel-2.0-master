@@ -42,6 +42,14 @@ To install all the requirements (requirement Python latest version)
   pip install -r requirements.txt
 ```
 
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`GOOGLE_CLIENT_ID`
+
+For Google Maps Integration
+
 ## Running Tests
 
 To run tests, run the following command
