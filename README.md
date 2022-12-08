@@ -8,7 +8,7 @@ Travel Organization was born from the need to better organize a trip by keeping 
 ![Login Screenshot](https://github.com/Emanuele-Chiummo/Travel-Organization/blob/088f0aec840e4b1959161621071740e5c2f93854/login.png)
 
 - Sign Up Page
-![Login Screenshot](https://github.com/Emanuele-Chiummo/Travel-Organization/blob/088f0aec840e4b1959161621071740e5c2f93854/register.png)
+![Register Screenshot](https://github.com/Emanuele-Chiummo/Travel-Organization/blob/2ae809ad1f2100e36a5138945edc279fcec15b55/register.png)
 
 - Homepage
 ![Homepage Screenshot](https://github.com/Emanuele-Chiummo/Travel-Organization/blob/d97717e74afddfc5bc5ac7ed408f182a65311964/home.png)
