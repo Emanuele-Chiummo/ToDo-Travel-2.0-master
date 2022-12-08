@@ -2,7 +2,7 @@
 
 Travel Organization was born from the need to better organize a trip by keeping all useful information in one place. 
 
- ## Login Page
+ ## Screenshot
 
 ![Login Screenshot](https://github.com/Emanuele-Chiummo/Travel-Organization/blob/088f0aec840e4b1959161621071740e5c2f93854/login.png)
 
