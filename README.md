@@ -33,7 +33,7 @@ password: test
 
 **Front-End:** HTML, CSS, Javascript
 
-**Back-End:** Flask, SQL, Python
+**Back-End:** Python, Flask, SQL
 
 
 ## Authors
