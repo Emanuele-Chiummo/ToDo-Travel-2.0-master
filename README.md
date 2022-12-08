@@ -29,13 +29,16 @@ To gain access in the development phase we could use the user name of TEST :
 username: test.user
 password: test
 
-## Running Tests
+## Installation
 
-To install all the requirements
+To install all the requirements (requirement Python latest version)
 
 ```bash
   pip install -r requirements.txt
 ```
+
+## Running Tests
+
 To run tests, run the following command
 
 ```bash
