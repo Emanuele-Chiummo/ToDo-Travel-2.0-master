@@ -27,3 +27,7 @@ To gain access in the development phase we could use the user name of TEST :
 username: test.user
 password: test
 
+## Authors
+
+- [@Emanuele Chiummo](https://github.com/Emanuele-Chiummo)
+
