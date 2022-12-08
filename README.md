@@ -27,7 +27,7 @@ To use Travel Organization we should register by entering:
 
 Travel Organization has visibility criteria for which each user will only and exclusively see their data 
 
-### Test User
+## Test User
 
 To gain access in the development phase we could use the user name of TEST :
 
