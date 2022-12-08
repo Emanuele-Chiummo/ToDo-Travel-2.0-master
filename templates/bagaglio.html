@@ -126,7 +126,7 @@
                            
                             {% for bagaglio in bagaglio %}
                             <div class="form-check mb-3">
-                                <input class="form-check-input" id="flexCheck1" type="checkbox" name="hello" value="YES">
+                                <input class="form-check-input" id="flexCheck1" type="checkbox" name="check">
                                 <label class="form-check-label" for="flexCheck1">{{bagaglio.memo}}</label>
                                 <form action="{{bagaglio.id_bagaglio}}/delete_memo" method="post">  
                                     <button type="" class=""><i class="bi bi-trash3" style="font-size: 1rem; color:red;"></i></button>
