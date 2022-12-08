@@ -66,7 +66,7 @@ To run tests, run the following command
 
 ## Demo
 
-EChiummo.pythonanywhere.com
+- [Demo](https://echiummo.pythonanywhere.com/)
 
 
 ## Authors
