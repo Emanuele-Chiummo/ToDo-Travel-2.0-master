@@ -86,6 +86,11 @@ To run tests, run the following command
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://www.emanuelechiummo.it/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](ttps://www.linkedin.com/in/emanuele-chiummo-8327a4233/)
+
+
 
 
 ## Authors
