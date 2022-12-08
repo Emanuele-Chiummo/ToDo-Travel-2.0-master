@@ -79,6 +79,11 @@ To run tests, run the following command
 
 - [Demo](https://echiummo.pythonanywhere.com/)
 
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
 
 ## Authors
 
