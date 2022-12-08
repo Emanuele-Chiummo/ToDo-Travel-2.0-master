@@ -16,6 +16,14 @@ To use Travel Organization we should register by entering:
 - Email
 - password
 
+
+## Tech Stack
+
+**Front-End:** HTML, CSS, Javascript
+
+**Back-End:** Flask, SQL
+
+
 ### Privacy
 
 Travel Organization has visibility criteria for which each user will only and exclusively see their data 
