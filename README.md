@@ -53,8 +53,8 @@ To install all the requirements (requirement Python latest version)
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`API_KEY` for Google Maps Integration
-`GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET` for Google OAuth Integration
+- `API_KEY` for Google Maps Integration
+- `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET` for Google OAuth Integration
 
 For Google Maps Integration
 
@@ -76,7 +76,7 @@ To run tests, run the following command
 
 - Responsive layouts for all devices [Completed]
 - Integration with Google Maps API [Completed]
-- Integration with Gooogle OAuth [On Hold]
+- Integration with Gooogle OAuth [Completed]
 - Save the checkbox value into bagaglio [In Progress]
 
 ## Demo
