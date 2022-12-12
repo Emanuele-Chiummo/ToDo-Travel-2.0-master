@@ -2,159 +2,157 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Travel Organization</title>
-    <link rel="stylesheet" href="../static/stylesheet/style.css">
-    <link rel="stylesheet" href="../static/stylesheet/bagaglio.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3388/3388607.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key='YOUR_SECRET_KEI'&callback=initMap"
-        type="text/javascript"></script>
-    <script type="text/javascript">
-        // Initialize and add the map
-        function initMap() {
-            // The location of Uluru
-            const pin = { lat: {{ school.lat }
-        }, lng: { { school.lng } } };
-        // The map, centered at Uluru
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 16,
-            center: pin,
-        });
-        // The marker, positioned at Uluru
-        const marker = new google.maps.Marker({
-            position: pin,
-            map: map,
-        });
-        }
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travel Organization</title>
+  <link rel="stylesheet" href="../static/stylesheet/style.css">
+  <link rel="stylesheet" href="../static/stylesheet/bagaglio.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3388/3388607.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdbW5zNeTTo8Zqb_j-H1hUv4tNoOT4Ums&callback=initMap"
+    type="text/javascript"></script>
+  <script type="text/javascript">
+   function initMap() {
+  // The location of Uluru
+  const uluru = { lat: {{school.lat}}, lng: {{school.lng}} };
+  // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 16,
+    center: uluru,
+  });
+  // The marker, positioned at Uluru
+  const marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+  });
+}
+  </script>
 </head>
 <title>Maps</title>
 
 
 <body>
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/home">
-                <img src="https://cdn-icons-png.flaticon.com/512/3388/3388607.png" alt="Logo" width="30" height="30"
-                    class="d-inline-block align-text-top">
-                Travel Organization
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
-                aria-labelledby="offcanvasDarkNavbarLabel">
-                <div class="offcanvas-header">
-                    <a class="navbar-brand" href="/home">
-                        <img class="avatar d-inline-block align-text-top" src="{{ avatars.default(size='s') }}"
-                            alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-                        {{session['username']}}
-                    </a>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home">
+        <img src="https://cdn-icons-png.flaticon.com/512/3388/3388607.png" alt="Logo" width="30" height="30"
+          class="d-inline-block align-text-top">
+        Travel Organization
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+        aria-controls="offcanvasDarkNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <a class="navbar-brand" href="/home">
+            <img class="avatar d-inline-block align-text-top" src="{{session['photo']}}" alt="Logo" width="30"
+              height="30" class="d-inline-block align-text-top">
+            {{session['username']}}
+          </a>
 
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{username}}/edit-profile">Edit Profile</a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="/my-travel" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                My Travel
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="/my-travel">Viaggi</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="/itinerario">Itinerario</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Bagaglio</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Trasporti</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="/diario">Diario</a></li>
-
-
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">Log Out</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
         </div>
-    </nav>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{username}}/edit-profile">Edit Profile</a>
+            </li>
 
-    <header>
-        <div class="px-2 py-2 my-2 text-center">
-            <img src="https://cdn-icons-png.flaticon.com/512/3388/3388607.png" alt="Logo" width="50" height="50"
-                class="d-inline-block align-text-top">
-            <h1 class="display-5 fw-bold">Travel Organization</h1>
-            <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">Tieni sotto controllo il tuo viaggio.</p>
-            </div>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="/my-travel" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                My Travel
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="/my-travel">Viaggi</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="/itinerario">Itinerario</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Bagaglio</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Trasporti</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="/diario">Diario</a></li>
+
+
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Log Out</a>
+            </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
         </div>
-    </header>
+      </div>
+    </div>
+  </nav>
 
-    <main>
-        <div class="container-maps">
-            <h1 style="text-align:center;">{{school.name}}</h1>
-            <br>
-            <h3 style="text-align:center;">Ricerca sulla mappa i mezzi di trasporto più vicini a te e consulta maggiori
-                informazioni su google maps</h3>
-            <br>
-            <div id="map" class="map" style="width:100%; height:350px;"></div>
-            <br>
-            <h4 style="text-align:center;">Per maggiorni informazioni visita la sezione <a
-                    href="/itinerario">Itinerario</a>, scegliendo la tua meta, nella sezione Trasporti</h4>
-        </div>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+  <header>
+    <div class="px-2 py-2 my-2 text-center">
+      <img src="https://cdn-icons-png.flaticon.com/512/3388/3388607.png" alt="Logo" width="50" height="50"
+        class="d-inline-block align-text-top">
+      <h1 class="display-5 fw-bold">Travel Organization</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Tieni sotto controllo il tuo viaggio.</p>
+      </div>
+    </div>
+  </header>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+  <main>
+    <div class="container-maps">
+      <h1 style="text-align:center;">{{school.name}}</h1>
+      <br>
+      <h3 style="text-align:center;">Ricerca sulla mappa i mezzi di trasporto più vicini a te e consulta maggiori
+        informazioni su google maps</h3>
+      <br>
+      <div id="map" class="map" style="width:100%; height:350px;"></div>
+      <br>
+      <h4 style="text-align:center;">Per maggiorni informazioni visita la sezione <a href="/itinerario">Itinerario</a>,
+        scegliendo la tua meta, nella sezione Trasporti</h4>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 <footer class="bg-dark text-center text-white">
 
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: #212529;">
-        © 2022 Copyright:
-        <a class="text-white" href="#">Travel Organization</a>
-    </div>
-    <!-- Copyright -->
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: #212529;">
+    © 2022 Copyright:
+    <a class="text-white" href="#">Travel Organization</a>
+  </div>
+  <!-- Copyright -->
 </footer>
 
 </html>

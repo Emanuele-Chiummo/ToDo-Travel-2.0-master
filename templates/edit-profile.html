@@ -13,7 +13,7 @@
 
 <body>
     <main>
-    <nav class="navbar navbar-dark bg-dark fixed-top">
+      <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
           <a class="navbar-brand" href="/home">
             <img src="https://cdn-icons-png.flaticon.com/512/3388/3388607.png" alt="Logo" width="30" height="30"
@@ -26,7 +26,7 @@
           <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
               <a class="navbar-brand" href="/home">
-                <img class="avatar d-inline-block align-text-top" src="{{ avatars.default(size='s') }}" alt="Logo" width="30" height="30"
+                <img class="avatar d-inline-block align-text-top" src="{{session['photo']}}" alt="Logo" width="30" height="30"
                   class="d-inline-block align-text-top">
                 {{session['username']}}
               </a>
@@ -82,20 +82,16 @@
       </nav>
     <h1>Done!</h1>
     <form method="POST" class="m-5">
+      <img src="{{session['photo']}}" alt="">
         <div class="form-group">
-            <label for="first_name">First Name</label>
+            <label for="first_name">Username</label>
             <input type="text" name="first_name" placeholder="Inserisci un titolo" class="form-control"
-                value="{{ users['first_name'] }}" required></input>
-        </div>
-        <div class="form-group">
-            <label for="last_name">Last Name</label>
-            <textarea name="last_name" placeholder="Inserisci delle informazioni"
-                class="form-control">{{ users['last_name'] }}</textarea>
+                value="{{ session['username'] }}" required></input>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" name="email" placeholder="Inserisci un titolo" class="form-control"
-                value="{{ users['email'] }}" required></input>
+                value="{{ session['email'] }}" required></input>
         </div>
         </br>
         <div class="form-group">

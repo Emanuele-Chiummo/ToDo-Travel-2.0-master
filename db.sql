@@ -16,7 +16,7 @@ CREATE TABLE users (
     first_name TEXT not null,
     last_name TEXT not null,
     email TEXT not null,
-    password TEXT not null
+    password TEXT
 );
 
 

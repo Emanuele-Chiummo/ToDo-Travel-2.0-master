@@ -28,7 +28,7 @@
           <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
             <div class="offcanvas-header">
               <a class="navbar-brand" href="/home">
-                <img class="avatar d-inline-block align-text-top" src="{{ avatars.default(size='s') }}" alt="Logo" width="30" height="30"
+                <img class="avatar d-inline-block align-text-top" src="{{session['photo']}}" alt="Logo" width="30" height="30"
                   class="d-inline-block align-text-top">
                 {{session['username']}}
               </a>
