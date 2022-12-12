@@ -1,3 +1,5 @@
+![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+
 ## Travel-Organization Information
 
 Travel Organization was born from the need to better organize a trip by keeping all useful information in one place. 
