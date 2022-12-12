@@ -34,7 +34,9 @@ Or you can login with your google account
 
 ## Privacy
 
-Travel Organization has visibility criteria for which each user will only and exclusively see their data 
+Travel Organization has visibility criteria for which each user will only and exclusively see their data.
+
+When you login with google your data except the password will be saved for the current operation of the visibility criteria.
 
 ## Test User
 
