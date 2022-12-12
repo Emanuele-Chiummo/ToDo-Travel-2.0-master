@@ -67,7 +67,7 @@ os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 avatars = Avatars(app)
 app.secret_key = os.urandom(12)
 
-GOOGLE_CLIENT_ID = " "
+GOOGLE_CLIENT_ID = "GOOGLE_CLIENT_ID"
 client_secrets_file = os.path.join(pathlib.Path(__file__).parent, "client_secret.json")
 
 flow = Flow.from_client_secrets_file(
