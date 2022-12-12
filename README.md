@@ -55,7 +55,7 @@ To install all the requirements (requirement Python latest version)
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project, you will need to add the following environment variables to your flask-app.py and client_secret.json file
 
 - `API_KEY` for Google Maps Integration
 - `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET` for Google OAuth Integration
