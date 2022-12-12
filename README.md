@@ -53,7 +53,8 @@ To install all the requirements (requirement Python latest version)
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`GOOGLE_CLIENT_ID`
+`API_KEY` for Google Maps Integration
+`GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET` for Google OAuth Integration
 
 For Google Maps Integration
 
