@@ -29,6 +29,8 @@ To use Travel Organization we should register by entering:
 - Email
 - password
 
+Or you can login with your google account 
+
 
 ## Privacy
 
