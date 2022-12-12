@@ -74,7 +74,7 @@ To run tests, run the following command
 
 **Front-End:** HTML, CSS, Javascript
 
-**Back-End:** Python, Flask, SQL
+**Back-End:** Python, Flask, SQLite
 
 ## Roadmap
 
