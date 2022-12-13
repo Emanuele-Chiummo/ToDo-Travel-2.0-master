@@ -49,6 +49,8 @@ def check_user(username, password):
     cur.execute(
         'Select username,password FROM users WHERE username=? and password=?', (username, password))
 
+    
+
 
 
 
@@ -113,11 +115,21 @@ def callback():
     session['email'] = id_info.get("email")
     session['photo'] = id_info.get("picture")
 
+
     connection=connection_db()
-    connection.execute('INSERT INTO users (username, email, first_name, last_name) VALUES (?, ?, ?, ?)',(session['username'], session['email'],session['name'],session['last_name'], ))
-    connection.commit()
-    connection.close()
-    return redirect("/home")
+    cur = connection.cursor()
+    res = cur.execute('SELECT email FROM users where email=?',[session['email']],)
+
+
+    if res.fetchone():
+        
+        return redirect("/home")
+    else:
+        connection.execute('INSERT INTO users (username, email, first_name, last_name) VALUES (?, ?, ?, ?)',(session['username'], session['email'],session['name'],session['last_name'], ))
+        connection.commit()
+        connection.close()
+
+        return redirect("/home")
 
 
 @app.route("/")
