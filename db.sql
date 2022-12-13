@@ -72,7 +72,8 @@ CREATE TABLE bagaglio(
     id_bagaglio INTEGER PRIMARY KEY AUTOINCREMENT,
     viaggiatore REFERENCES users(username),
     memo TEXT,
-    checkbox INT
+    checkbox BOOLEAN,
+    CHECK (checkbox IN (0, 1))
 );
 
 INSERT INTO users(username, first_name, last_name, email, password) VALUES(
