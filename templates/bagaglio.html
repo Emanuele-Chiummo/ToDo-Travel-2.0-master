@@ -132,10 +132,19 @@
 
                 {% for bagaglio in bagaglio %}
                 <div class="form-check mb-3">
-                  <form action="{{bagaglio.id_bagaglio}}/edit_bagaglio">
-                    <input class="form-check-input" id="flexCheck1" type="checkbox" name="check">
-                    <button type="submit" class="">Save</button>
+
+                  {% if bagaglio.checkbox == 0 %}
+                  <form method="POST" action="{{bagaglio.id_bagaglio}}/bagaglio">
+                    <input class="form-check-input" id="flexCheck1" type="checkbox" name="myCheckBox">
+                    <button type="submit"></button>
                   </form>
+                  {% else %}
+                  <form method="POST" action="{{bagaglio.id_bagaglio}}/bagaglio">
+                    <input class="form-check-input" id="flexCheck1" type="checkbox" name="myCheckBox" checked>
+                    <button type="submit"></button>
+                  </form>
+                  {% endif %}
+
                   <label class="form-check-label" for="flexCheck1">{{bagaglio.memo}}</label>
                   <form action="{{bagaglio.id_bagaglio}}/delete_memo" method="post">
                     <button type="" class=""><i class="bi bi-trash3" style="font-size: 1rem; color:red;"></i></button>
@@ -149,7 +158,21 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> 
+
+    {% for bagaglio in bagaglio %}
+
+    {% if bagaglio.checkbox == 0 %}
+    <input class="form-check-input" id="flexCheck1" type="checkbox" name="myCheckBox">
+    <label class="form-check-label" for="flexCheck1">{{bagaglio.memo}}</label>
+
+    {% else %}
+      <input class="form-check-input" id="flexCheck1" type="checkbox" name="myCheckBox" checked>
+      <label class="form-check-label" for="flexCheck1">{{bagaglio.memo}}</label>
+
+    {% endif %}
+
+    {% endfor %}
 
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

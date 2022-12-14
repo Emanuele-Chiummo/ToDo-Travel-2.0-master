@@ -505,19 +505,20 @@ def bagaglio():
     else:
         return redirect('/not_found')
 
-@app.route('/<int:idx>/edit_bagaglio')
+@app.route('/<int:idx>/bagaglio', methods=('GET', 'POST'))
 def edit_bagaglio(idx):
     connection = connection_db()
-    connection.execute(
-        'SELECT * from bagaglio where viaggiatore =?', (session['username'],)).fetchall()
+    bagaglio = connection.execute(
+        'SELECT * from bagaglio where id_bagaglio =?', (idx,)).fetchone()
     connection.close()
     if request.method == 'POST':
-        complete = request.form.get('check') # Oppure mettere True
+        complete = True # Oppure mettere True
         connection = connection_db()
         connection.execute('UPDATE bagaglio SET checkbox=? WHERE id_bagaglio=?', (idx, complete,))
         connection.commit()
         connection.close()
-    return redirect('/bagaglio')
+        
+    return render_template('bagaglio.html')
 
 
 @app.route('/<int:idx>/delete_memo', methods=('POST',))
