@@ -11,12 +11,14 @@ import os
 import pathlib
 import requests
 
+#Definizione funzione per la connessione al DB
 
 def connection_db():
     connection = sqlite3.connect('database.db')
     connection.row_factory = sqlite3.Row
     return connection
 
+#Definizione classe per l'integrazione con google Maps
 
 class School:
     def __init__(self, key, name, lat, lng):
@@ -25,6 +27,7 @@ class School:
         self.lat = lat
         self.lng = lng
 
+#JSON per l'integrazione con Google Maps
 
 schools = (
     School('Amsterdam',      'Amsterdam',   52.377956,  4.897070),
@@ -32,6 +35,8 @@ schools = (
     School('Londra', 'Londra', 51.500153, -0.1262362)
 )
 schools_by_key = {school.key: school for school in schools}
+
+# Funzione di registrazione dell'utente
 
 
 def register_user_to_db(username, first_name, last_name, email, password):
@@ -42,6 +47,8 @@ def register_user_to_db(username, first_name, last_name, email, password):
     con.commit()
     con.close()
 
+# Controllo se lútente è già censito del DB
+
 
 def check_user(username, password):
     con = sqlite3.connect('database.db')
@@ -50,16 +57,15 @@ def check_user(username, password):
         'Select username,password FROM users WHERE username=? and password=?', (username, password))
 
 
-def reset_password(email):
-    connection = connection_db()
-    connection.cursor()
-    connection.execute('Select email FROM users')
+
 
 
 app = Flask(__name__)
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 avatars = Avatars(app)
 app.secret_key = os.urandom(12)
+
+# Google Client ID per il SSO con Google
 
 GOOGLE_CLIENT_ID = "488676761730-68ctqg40lld125augmqetekltsbr6r8a.apps.googleusercontent.com"
 client_secrets_file = os.path.join(
@@ -81,6 +87,8 @@ def login_is_required(function):
             return function()
 
     return wrapper
+
+# Login con Google
 
 
 @app.route("/login_google")
@@ -109,12 +117,13 @@ def callback():
         audience=GOOGLE_CLIENT_ID
     )
 
-    session["google_id"] = id_info.get("sub")
+    session['google_id'] = id_info.get("sub")
     session['username'] = id_info.get("name")
     session['name'] = id_info.get('given_name')
     session['last_name'] = id_info.get('family_name')
     session['email'] = id_info.get("email")
     session['photo'] = id_info.get("picture")
+    session['local'] = id_info.get("locale")
 
     connection = connection_db()
     cur = connection.cursor()
@@ -137,6 +146,8 @@ def callback():
 def index():
     return render_template('login.html')
 
+# Registrazione
+
 
 @app.route('/register', methods=["POST", "GET"])
 def register():
@@ -151,6 +162,8 @@ def register():
 
     else:
         return render_template('register.html')
+
+# Login
 
 
 @app.route('/login', methods=["POST", "GET"])
@@ -171,6 +184,8 @@ def login():
 def logout():
     session.clear()
     return redirect(url_for('login'))
+
+#Homepage - Funzione modifica - delete - update
 
 
 @app.route('/home', methods=['POST', "GET"])
@@ -214,6 +229,8 @@ def create():
     else:
         return redirect('/not_found')
 
+#Modifica Profilo 
+
 
 @app.route('/<username>/edit-profile', methods=('GET', 'POST'))
 def edit_profile(username):
@@ -236,6 +253,8 @@ def edit_profile(username):
         return render_template('edit-profile.html', users=users)
     else:
         return redirect('/not_found')
+
+# Inserimento Viaggio
 
 
 @app.route('/viaggio', methods=('GET', 'POST'))
@@ -264,6 +283,8 @@ def viaggio():
     else:
         return redirect('/not_found')
 
+# Visualizzazione Viaggi
+
 
 @app.route('/my-travel', methods=('GET', 'POST'))
 def read():
@@ -276,6 +297,8 @@ def read():
         return render_template('my-travel.html', username=session['username'], travel=travel)
     else:
         return redirect('/not_found')
+
+# Inserimento Soggiorno
 
 
 @app.route('/soggiorno', methods=('GET', 'POST'))
@@ -298,6 +321,7 @@ def soggiorno():
         return redirect('/not_found')
 
 
+
 @app.route('/travel', methods=('GET', 'POST'))
 def travel():
     if 'username' in session:
@@ -309,6 +333,8 @@ def travel():
         return render_template('travel.html', username=session['username'], travel=travel)
     else:
         return redirect('/not_found')
+
+    # Modifica Viaggio
 
 
 @app.route('/<int:idx>/edit', methods=('GET', 'POST'))
@@ -335,6 +361,8 @@ def edit(idx):
         return render_template('edit.html', travel=travel)
     else:
         return redirect('/not_found')
+
+    # Visualizzazione - Inserimento - Modifica - Cancellazione Note (Diario )
 
 
 @app.route('/diario', methods=('GET', 'POST'))
@@ -393,6 +421,8 @@ def delete_post(idx):
     else:
         return redirect('/not_found')
 
+# Visualizzazione Itinerari
+
 
 @app.route('/itinerario', methods=('GET', 'POST'))
 def itinerario():
@@ -401,6 +431,8 @@ def itinerario():
         return render_template('itinerario.html', itinerario=itinerario)
     else:
         return redirect('/not_found')
+
+# inserimento Nuovo Itinerario
 
 
 @app.route('/new_itinerario', methods=('GET', 'POST'))
@@ -422,6 +454,8 @@ def new_itinerario():
         return render_template('new_itinerario.html')
     else:
         return redirect('/not_found')
+
+# Selezionamento itinerario 
 
 
 @app.route('/your_itinerari', methods=('GET', 'POST'))
@@ -472,6 +506,8 @@ def delete_itinerario(idx):
     else:
         return redirect('/not_found')
 
+# Dichiarazione pagina Amstertdam
+
 
 @app.route('/amsterdam')
 def Amsterdam():
@@ -479,6 +515,8 @@ def Amsterdam():
         return render_template('Amsterdam.html')
     else:
         return redirect('/not_found')
+
+# Visualizzazione - Modifica - Cancellazione Bagaglio
 
 
 @app.route('/bagaglio', methods=('GET', 'POST'))
@@ -533,6 +571,7 @@ def delete_bagaglio(idx):
     else:
         return redirect('/not_found')
 
+# Trasporti
 
 @app.route("/trasporti")
 def trasporti():
@@ -559,6 +598,14 @@ def show_school(school_code):
 def not_found():
 
     return render_template('not_found.html')
+
+@app.route('/setting')
+def setting():
+
+    return render_template('setting.html')
+
+
+
 
 
 if __name__ == '__main__':
